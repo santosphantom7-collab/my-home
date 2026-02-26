@@ -1,1 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Love, Kiki ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      transition: background 1.5s ease;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px 25px;
+      border-radius: 20px;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,105,180,0.6);
+      animation: fadeIn 1.8s ease;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+
+    .message {
+      font-size: 1.05em;
+      line-height: 1.6;
+      margin-top: 15px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .heart {
+      font-size: 50px;
+      animation: beat 1.3s infinite;
+      margin: 15px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #ff4d6d;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255,0,100,0.7);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: #ff1e56;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .hearts span {
+      position: absolute;
+      font-size: 18px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<div class="container">
+  <h1 id="title"></h1>
+  <div class="heart">❤️</div>
+
+  <div class="message" id="loveMessage"></div>
+
+  <button onclick="reveal()">Tap for a Surprise 💌</button>
+
+  <div id="surprise" class="hidden">
+    <h2 id="surpriseTitle"></h2>
+    <p id="surpriseText"></p>
+  </div>
+</div>
+
+<script>
+  const backgrounds = [
+    "linear-gradient(135deg, #ff9a9e, #fad0c4)",
+    "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+    "linear-gradient(135deg, #ffecd2, #fcb69f)",
+    "linear-gradient(135deg, #ff758c, #ff7eb3)",
+    "linear-gradient(135deg, #fddb92, #d1fdff)"
+  ];
+
+  const titles = [
+    "My Beautiful Kiki 💕",
+    "To My Favorite Person ❤️",
+    "Hey My Love 😘",
+    "My Forever Girl 💖",
+    "To The Queen of My Heart 👑"
+  ];
+
+  const messages = [
+    "Every time I think about you, my heart finds a new reason to smile. You are my peace, my joy, and my sweetest blessing.",
+    "Loving you feels like home. Safe, warm, and filled with happiness. I cherish every thought of you, Kiki.",
+    "You make my world brighter just by being in it. My love for you grows deeper every single day.",
+    "No matter the distance, my heart stays right next to yours. You are my favorite forever.",
+    "I thank the universe for you every day. You are my miracle, my love, my everything."
+  ];
+
+  const surpriseTitles = [
+    "Always Yours 💞",
+    "Just So You Know 😌",
+    "From My Heart ❤️",
+    "Forever & Always 💕"
+  ];
+
+  const surprises = [
+    "Brace yourself because I’m about to shower you with all the I love yous I couldn’t say 😘",
+    "Endless hugs, kisses, cuddles and love are loading… please wait 💋",
+    "You are about to experience premium unlimited affection from me 💖",
+    "Warning: Extreme levels of love and attention coming your way 😍"
+  ];
+
+  function random(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  document.body.style.background = random(backgrounds);
+  document.getElementById("title").innerText = random(titles);
+  document.getElementById("loveMessage").innerText = random(messages);
+
+  function reveal() {
+    document.getElementById("surprise").classList.remove("hidden");
+    document.getElementById("surpriseTitle").innerText = random(surpriseTitles);
+    document.getElementById("surpriseText").innerText = random(surprises);
+  }
+
+  const hearts = document.querySelector('.hearts');
+
+  function createHeart() {
+    const span = document.createElement('span');
+    span.innerHTML = '💖';
+    span.style.left = Math.random() * 100 + 'vw';
+    span.style.animationDuration = (3 + Math.random() * 5) + 's';
+    span.style.fontSize = (14 + Math.random() * 22) + 'px';
+    hearts.appendChild(span);
+
+    setTimeout(() => span.remove(), 8000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
